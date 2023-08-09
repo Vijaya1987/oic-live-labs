@@ -408,5 +408,5 @@ By completing this, you have effectively concluded the lab. we hope this has pro
 
 
 ## Acknowledgements
-* **Author** - Vijaya Vishwanath
+* **Author** - Vijaya Vishwanath, Sr. Cloud Solution Engineer
 * **Last Updated By/Date** - August 2023

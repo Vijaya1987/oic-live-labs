@@ -30,11 +30,11 @@ Access to Oracle Cloud Account and Oracle Digital Assistant
 
 5. Enter the following details in the create skill dialoge window that appears as below.
     - **Display Name**:
-        <copy> Purchase Order Assistant </copy>
+          Purchase Order Assistant  
     - **One-Sentence Description**:
-        <copy> A unique skill that assists users with the Status of Purchase Orders. </copy>
+          A unique skill that assists users with the Status of Purchase Orders.  
     - **Skill Version**: 
-         <copy>1.0</copy>
+          1.0</copy>
     - **Platform Version**:
         Choose the latest from the drop down, ***23.06(Latest)***
     - **Dialoge Mode**:
@@ -123,7 +123,7 @@ In this section you have to create dialogue flow for Greetings and the Purchase 
 
 6. Then a side window opens up with the properties of the template to fill, under the **Component** tab , Please add the below text:
 
-         <copy> Hello "${profile.firstName}", Welcome to the Purchase Order Assistant! How can I assist you today?  </copy>
+           Hello "${profile.firstName}", Welcome to the Purchase Order Assistant! How can I assist you today?   
 
 
 **Create the Purchase Order conversation dialogue flow:**
@@ -144,16 +144,16 @@ button, make sure to check the box "**Open created flow afterwards**".
 
 5. Enter the following details to add variables one by one and hit **Apply** button.
 
-          - **Name**: <copy> OrderNumber </copy>
-          - **Description**: <copy>Purchase Order Number</copy>
+          - **Name**:   OrderNumber  
+          - **Description**:  Purchase Order Number</copy>
           - **Variable Type**: String
 
     ![order_number_variable](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/order_number_variable.png)
 
 6. Repeat the step above for adding another variable with the details mentioned below
 
-            - **Name**: <copy> PurchaseOrderDetails </copy>
-            - **Description**: <copy>Details of the Purchase Order</copy>
+            - **Name**:   PurchaseOrderDetails  
+            - **Description**:  Details of the Purchase Order</copy>
             - **Variable Type**: Map
 
      ![purchase_order_details_variable](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/purchase_order_details_variable.png)
@@ -172,7 +172,7 @@ button, make sure to check the box "**Open created flow afterwards**".
 
 10. A side window pane opens up for this select template to fill all the details, click on the **Component** tab and enter the below details:
 
-        Question  : <copy>Absolutely! To better assist you, could you please provide your Order Number?</copy>
+        Question  :  Absolutely! To better assist you, could you please provide your Order Number?</copy>
         Variable: select the **Order Number** from **Flow Variables **
 
      ![ask_order_number_component](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/ask_order_number_component.png)
@@ -288,7 +288,7 @@ Click on the **Action Name** in the new row and from the dropdown select **Succe
 
 28. In the **Component** tab under the **Expression** editor add the below free marker expression.
  
-            <copy>${PurchaseOrderDetails.value.responsePayload.ordernumber?hasContent?then('success','failure')} </copy>          
+             ${PurchaseOrderDetails.value.responsePayload.ordernumber?hasContent?then('success','failure')}            
 
 ![free_marker_expression](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/free_marker_expression.png)
 
@@ -303,7 +303,7 @@ Click on the **Action Name** in the new row and from the dropdown select **Succe
 
 31. In the **outputFailure** window, go to the **Component** tab and copy the below message and paste it in the editor.
 
-         <copy>Unfortunately, we couldn't locate any records matching the provided Order Number: ${OrderNumber}.</copy>
+          Unfortunately, we couldn't locate any records matching the provided Order Number: ${OrderNumber}.</copy>
 
     ![output_failure_final](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/output_failure_final.png)     
 
@@ -363,7 +363,7 @@ The above code is a **YAML** code make sure the indentation matches with the scr
 
 38. under the **Action** section, add **Action Name** as **No** and in the **Transition To** select **add state** and select the **Send Message** template and name it as **ThankYouMessage**. Go to the **Component** tab is opened copy the below message and paste it in the editor.
 
-         <copy>Thank you for your time. It was a pleasure to assist you. Please feel free to reach out any time you need more assistance with your Purchase Order, until then, Goodbye and takecare!</copy>
+          Thank you for your time. It was a pleasure to assist you. Please feel free to reach out any time you need more assistance with your Purchase Order, until then, Goodbye and takecare!</copy>
 
 
 ![askanotherordernumber_noaction](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/askanotherordernumber_noaction.png)

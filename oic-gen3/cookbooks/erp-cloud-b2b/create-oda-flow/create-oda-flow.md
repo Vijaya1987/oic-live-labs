@@ -273,43 +273,48 @@ erp-cloud-b2b/create-oda-flow/images/right_icon.png) to save the variable detail
 
 - **Result Variable Service** : select the Flow variable **PurchaseOrderDetails** from the dropdown.
 
-25. After the variables are successfully added in **Component**, select the **Transitions** tab, click on the **+** sign near the **Action** , a new row gets added with two Columns **Action Name** and **Transition To**
-Click on the **Action Name** in the new row and from the dropdown select **Success**
+![callerp-final1](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/callerp_final1.png)
 
-![add_transition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/add_transition_rest_component.png)
 
-26. In the **Transition To** from the dropdown select **add state...**
+![callerp-final2](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/callerp_final2.png)
 
-![add_state](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/transition_to_rest_add_state.png)
 
-27. In the **Add State** window that opens up select the **Flow Control** section and navigate to **Switch** template and select it, name it as **determineIfValuePresent** and hit the **Insert** button.
+25. After the variables are successfully added in **Component**, select the **Transitions** tab, under the **Next Transition** select **add state**
+ 
+
+![add-state](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/transition_rest_next_state.png)
+
+26. In the **Add State** window that opens up select the **Flow Control** section and navigate to **Switch** template and select it, name it as **determineIfValuePresent** and hit the **Insert** button.
 
 ![add_switch_component](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/add_switch_component.png)
 
-28. In the **Component** tab under the **Expression** editor add the below free marker expression.
+27. In the **Component** tab under the **Expression** editor add the below free marker expression.
  
              ${PurchaseOrderDetails.value.responsePayload.ordernumber?hasContent?then('success','failure')}            
 
 ![free_marker_expression](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/free_marker_expression.png)
 
-29. Go to the **Transition** tab , under the **Next Transition** section select the **Add State** from the dropdown.
+28. Go to the **Transition** tab , under the **Next Transition** section select the **Add State** from the dropdown.
 
  ![next_transition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/next_transition.png)
 
 
-30. when the **Add State** opens up, select the **Send Message** template and name it as **outputFailure** and hit the **Insert** button.
+29. when the **Add State** opens up, select the **Send Message** template and name it as **outputFailure** and hit the **Insert** button.
 
   ![output_failure](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/output_failure.png)
 
-31. In the **outputFailure** window, go to the **Component** tab and copy the below message and paste it in the editor.
+30. In the **outputFailure** window, go to the **Component** tab and copy the below message and paste it in the editor.
 
           Unfortunately, we couldn't locate any records matching the provided Order Number: ${OrderNumber}.</copy>
 
     ![output_failure_final](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/output_failure_final.png)     
 
-32. No go to the **determineIfValuePresent** state and click on the **Transitions** tab , then click on the **+** icon near the **Action** and add the **Action Name** as **success** and for **Transition To** select add state again, once the add state window opens select the **Send Message** template and name it as **api Response** and hit the **Insert** button.
+31. No go to the **determineIfValuePresent** state and click on the **Transitions** tab , then click on the **+** icon near the **Action** and add the **Action Name** as **success** and for **Transition To** select add state again, once the add state window opens select the **Send Message** template and name it as **api Response** and hit the **Insert** button.
 
-33. In the **apiResponse** pane, under the **Component** tab , copy the below message and paste it.
+![success-action](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/determineifvaluepresent_successstate.png)
+
+
+32. In the **apiResponse** pane, under the **Component** tab , copy the below message and paste it.
     
             The Status is "${PurchaseOrderDetails.value.responsePayload.status}"
 
@@ -323,16 +328,16 @@ Click on the **Action Name** in the new row and from the dropdown select **Succe
             Sold to Legal Entity:   "${PurchaseOrderDetails.value.responsePayload.sold_to_legal_entity}"
             Letter of Credit Id:   "${PurchaseOrderDetails.value.responsePayload.locId}"
   
-34. After this, click on the **Transitions** tab , under the **Next Transition** , click on **add state** and navigate towards the **resetVariables** template, name it as **resetVariables** and hit then **Insert** button.
+33. After this, click on the **Transitions** tab , under the **Next Transition** , click on **add state** and navigate towards the **resetVariables** template, name it as **resetVariables** and hit then **Insert** button.
 
     ![apiresponse_transition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/apiresponse_transition.png)
 
-35. In the **resetVariables** pane, select both flow variables **OrderNumber** & **PurchaseOrderDetails** to reset.
+34. In the **resetVariables** pane, select both flow variables **OrderNumber** & **PurchaseOrderDetails** to reset.
      
      ![reset_variables_both](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/reset_variables_both.png)
 
 
-36. Click on the **Transitions** tab and under the **Next Transition** select **add state** and follow this path  **User Messaging>>Create Text Menu>> Create Action Menu**, name it as **anotherOrderNumber** and hit the **Insert** button. In the **Component** tab click on the **Edit Response Items** and copy the below text add the text and hit on the **Apply** button.
+35. Click on the **Transitions** tab and under the **Next Transition** select **add state** and follow this path  **User Messaging>>Create Text Menu>> Create Action Menu**, name it as **anotherOrderNumber** and hit the **Insert** button. In the **Component** tab click on the **Edit Response Items** and copy the below text add the text and hit on the **Apply** button.
 
          responseItems:
            - text: Are you interested in checking the Status of a different Order Number?
@@ -357,11 +362,11 @@ The above code is a **YAML** code make sure the indentation matches with the scr
 
 ![another_order_number](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/another_order_number_yaml.png)
 
-37. Now click on the **Transitions** tab and under the **Next Transition** drop down select the **askOrderNumber** state.
+36. Now click on the **Transitions** tab and under the **Next Transition** drop down select the **askOrderNumber** state.
 
 ![select_askordernumber_state](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/select_askordernumber_state.png)
 
-38. under the **Action** section, add **Action Name** as **No** and in the **Transition To** select **add state** and select the **Send Message** template and name it as **ThankYouMessage**. Go to the **Component** tab is opened copy the below message and paste it in the editor.
+37. under the **Action** section, add **Action Name** as **No** and in the **Transition To** select **add state** and select the **Send Message** template and name it as **ThankYouMessage**. Go to the **Component** tab is opened copy the below message and paste it in the editor.
 
           Thank you for your time. It was a pleasure to assist you. Please feel free to reach out any time you need more assistance with your Purchase Order, until then, Goodbye and takecare!</copy>
 
@@ -370,34 +375,48 @@ The above code is a **YAML** code make sure the indentation matches with the scr
 
 ![thankyoumessage](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/thankyoumessage.png)
 
-39. Now lets go to the **outputFailure** state and  click on the **Transitions** tab in the **Next Transition** dropdown select **resetVariables** state.
+38. Now lets go to the **outputFailure** state and  click on the **Transitions** tab in the **Next Transition** dropdown select **resetVariables** state.
 
 ![outputfailure_nexttransition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/outputfailure_nexttransition.png)
 
-40. Finally, lets go back to the **noaction_resetVariable** state and click on the **Transitions** tab in the **Next Transition** dropdown select the **add state** state.
+39. Finally, lets go back to the **noaction_resetVariable** state and click on the **Transitions** tab in the **Next Transition** dropdown select the **add state** state.
 
 ![noaction_variable_addstate](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/noaction_resetvariable_addstate.png)
 
-41. In the add state window, select the **Ask Question** template.
+40. In the add state window, select the **Ask Question** template.
 
 ![ask_question](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/ask_question_addstate.png)
 
-42. Go to the **Component** tab, copy the below sentence and paste it in the editor, then under the variables select the **OrderNumber** variable in the **Flow** scope.
+41. Go to the **Component** tab, copy the below sentence and paste it in the editor, then under the variables select the **OrderNumber** variable in the **Flow** scope.
 
                 Kindly, input the accurate Order Number!
 
-![reenter_state_component_details](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/reenter_state_component_details.png)
+![reenter-state_component_details](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/reenter_state_component_details.png)
 
-43. Go to the **Transitions** tab, under the **Next Transition** select the already created state **callERPAPI**
+42. Go to the **Transitions** tab, under the **Next Transition** select the already created state **callERPAPI**
 
-![reenter_nexttransition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/reenter_transition.png)
+![reenter-nexttransition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/reenter_transition.png)
 
 
-44. with thi the final flow should like below.
+43. with this the final flow should like below.
 
-![final_flow](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/final_flow.png)
+![final-flow](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/final_flow.png)
 
-45. With this you have succesfully built the dialogue flow, please proceed to the next section to train and test it.
+44. Next, go head and click on the **Main Flow** tab under the **Flow Designer** section. we need to map the conversation design flow the appropriate intents for that you need to create an **Intent Event Handler**. In the Main flow window expand the **Intent Events** section and click on the **+** icon besides it. A window opens up for mapping the Intent with the appropriate mapped flow, make sure to match **Greetings** Intent with **Greetings** mapped flow and hit the **Create** button. Repeat the same for **Purchase Order** Intent to map it with **PurchaseOrderConversationFlow**
+
+![map-intent-to-flow](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/map_intent_to_flow.png)
+
+![map-intent-to-flow-po](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/map_intent_to_flow_po.png)
+
+45. The final mappings should look like below. With this you have succesfully designed the conversation flow for Purchase Order Assistant, you can now proceed to the next Task.
+
+![final-mappings](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/final_mappings.png)
+
+
+
+ 
+
+
 
 ## Task 4: Test your Skill
 

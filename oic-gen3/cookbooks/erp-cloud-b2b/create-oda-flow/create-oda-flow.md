@@ -374,9 +374,30 @@ The above code is a **YAML** code make sure the indentation matches with the scr
 
 ![outputfailure_nexttransition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/outputfailure_nexttransition.png)
 
-40. Finally, lets go back to the **yesaction_resetVariable** state and click on the **Transitions** tab in the **Next Transition** dropdown select the **callERPAPI** state.
+40. Finally, lets go back to the **noaction_resetVariable** state and click on the **Transitions** tab in the **Next Transition** dropdown select the **add state** state.
 
-![yesactionvariable_nexttransition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/yesactionvariable_nexttransition.png)
+![noaction_variable_addstate](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/noaction_resetvariable_addstate.png)
+
+41. In the add state window, select the **Ask Question** template.
+
+![ask_question](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/ask_question_addstate.png)
+
+42. Go to the **Component** tab, copy the below sentence and paste it in the editor, then under the variables select the **OrderNumber** variable in the **Flow** scope.
+
+                Kindly, input the accurate Order Number!
+
+![reenter_state_component_details](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/reenter_state_component_details.png)
+
+43. Go to the **Transitions** tab, under the **Next Transition** select the already created state **callERPAPI**
+
+![reenter_nexttransition](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/reenter_transition.png)
+
+
+44. with thi the final flow should like below.
+
+![final_flow](/oic-gen3/cookbooks/erp-cloud-b2b/create-oda-flow/images/final_flow.png)
+
+45. With this you have succesfully built the dialogue flow, please proceed to the next section to train and test it.
 
 ## Task 4: Test your Skill
 
